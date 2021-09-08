@@ -1,24 +1,8 @@
 import React, { useState, useCallback } from "react";
-
+import {useAction} from './customhook'
 function App() {
   const listStudent = ["Huyen", "Hoa", "Hung", "Long"];
-
-  const useAction = () => {
-    const [position, setPosition] = useState(0);
-
-    const increase = useCallback(() => {
-      if (position !== listStudent.length - 1) setPosition(position + 1);
-      else setPosition(0);
-    }, [position]);
-    const decrease = useCallback(() => {
-      if (position !== 0) setPosition(position - 1);
-      else setPosition(listStudent.length - 1);
-    }, [position]);
-
-    return [position, { increase, decrease }];
-  };
-
-  const [position, { increase, decrease }] = useAction();
+  const [position, { increase, decrease }] = useAction(listStudent);
   return (
     <div className="main">
       <div className="list-student">
